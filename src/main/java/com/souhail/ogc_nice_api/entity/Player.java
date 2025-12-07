@@ -1,4 +1,4 @@
-package c.s.ogc_nice_api.entity;
+package com.souhail.ogc_nice_api.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

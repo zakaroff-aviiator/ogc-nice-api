@@ -1,6 +1,5 @@
 spring:
   application:
     name: ogc-nice-api
-
   profiles:
     active: dev

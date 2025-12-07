@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class OgcNiceApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OgcNiceApiApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(OgcNiceApiApplication.class, args);
+    }
 }
