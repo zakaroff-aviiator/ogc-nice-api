@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.souhail.ogc_nice_api.exception.TeamNotFoundException;
+
 
 @Service
 @RequiredArgsConstructor
@@ -43,5 +45,24 @@ public class TeamServiceImpl implements TeamService {
         Team saved = teamRepository.save(team);
         return TeamMapper.toDto(saved);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public TeamResponseDto getTeamById(Long id) {
+        Team team = teamRepository.findById(id)
+                .orElseThrow(() -> new TeamNotFoundException(id));
+
+        return TeamMapper.toDto(team);
+    }
+
+    @Override
+    @Transactional
+    public void deleteTeam(Long id) {
+        Team team = teamRepository.findById(id)
+                .orElseThrow(() -> new TeamNotFoundException(id));
+
+        teamRepository.delete(team);
+    }
+
 }
 

@@ -31,4 +31,16 @@ public class TeamController {
     public TeamResponseDto createTeam(@Valid @RequestBody CreateTeamRequest request) {
         return teamService.createTeam(request);
     }
+
+    @GetMapping("/{id}")
+    public TeamResponseDto getTeamById(@PathVariable Long id) {
+        return teamService.getTeamById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteTeam(@PathVariable Long id) {
+        teamService.deleteTeam(id);
+    }
+
 }
