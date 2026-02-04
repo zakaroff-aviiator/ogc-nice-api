@@ -1,6 +1,6 @@
 # OGC Nice API
 
-Backend REST API built with Spring Boot to manage OGC Nice teams and their players.
+API REST backend développée avec Spring Boot pour gérer les équipes de l’OGC Nice et leurs joueurs.
 
 ## Tech stack
 
@@ -19,7 +19,7 @@ Backend REST API built with Spring Boot to manage OGC Nice teams and their playe
 
 ## Architecture
 
-Package structure:
+Structure des packages :
 
 ```
 com.souhail.ogc_nice_api
@@ -41,49 +41,48 @@ Relations:
 
 ---
 
-# Running the project
+# Exécution du projet
 
-You can run the application in **two ways**:
+Vous pouvez exécuter l’application de **deux manières**:
 
 ---
 
-# 1️⃣ Local Development (Maven + Local Docker Postgres)
+# 1️⃣ Développement local (Maven + PostgreSQL local via Docker)
 
-### Start PostgreSQL with Docker
+### Démarrer PostgreSQL avec Docker
 
 ```bash
 docker-compose up -d postgres
 ```
 
-### Run the application
+### Lancer l’application
 
 ```bash
 mvn spring-boot:run
 ```
 
-API available at:
-
+API disponible à l’adresse :
 ```
 http://localhost:8080
 ```
 
 ---
 
-# 2️⃣ Full Dockerized Application (Recommended)
+# 2️⃣ Application entièrement dockerisée (recommandé)
 
-The entire stack (API + Postgres) can be started with **one command**:
+
+L’ensemble de la stack (API + PostgreSQL) peut être démarré avec une **seule commande**:
 
 ```bash
 docker-compose up --build
 ```
 
-This will:
-
-1. Build the Spring Boot jar  
-2. Build the Docker image from the Dockerfile  
-3. Start Postgres  
-4. Start the API container  
-5. Expose API on port **8080**  
+Cela va :
+Construire le JAR Spring Boot
+Construire l’image Docker à partir du Dockerfile
+Démarrer PostgreSQL
+Démarrer le conteneur de l’API
+Exposer l’API sur le port **8080**
 
 ### Test:
 
@@ -93,9 +92,10 @@ curl http://localhost:8080/api/teams
 
 ---
 
-# Docker Setup Details
+# Détails de la configuration Docker
 
-### Dockerfile (multi-stage build)
+### Dockerfile (build multi-étapes)
+
 
 ```
 # ==== Build stage ====
@@ -183,7 +183,7 @@ Base path: `/api/teams`
 ---
 
 ### GET /api/teams  
-Supports pagination + sorting.
+Prend en charge la pagination et le tri.
 
 ```
 GET /api/teams?page=0&size=10&sortBy=name&direction=asc
@@ -193,31 +193,29 @@ GET /api/teams?page=0&size=10&sortBy=name&direction=asc
 
 ### GET /api/teams/{id}
 
-Returns team with players or **404 Not Found**.
+Renvoie l’équipe avec ses joueurs ou **404 Not Found**.
 
 ---
 
 ### DELETE /api/teams/{id}
 
-Deletes a team, returns **204 No Content**.
+Supprime une équipe et renvoie **204 No Content**.
 
 ---
 
 # Error handling
 
-Handled globally:
+Géré globalement :
 
-- 400 → Validation errors  
-- 404 → Team not found  
-- 500 → All other exceptions  
-
+- 400 → Erreurs de validation
+- 404 → Équipe introuvable
+- 500 → Toutes les autres exceptions
 ---
 
 # Tests
 
-Tests use **H2** and the **test** profile.
-
-Run locally:
+Les tests utilisent **H2** et le profil **test**.
+Exécution en local :
 
 ```bash
 mvn test
@@ -236,29 +234,29 @@ Workflow file:
 .github/workflows/ci.yml
 ```
 
-CI runs on every push and pull request:
+La CI s’exécute à chaque push et pull request :
 
-- Setup Java 17  
-- Cache Maven  
+- Configuration de Java 17
+- Mise en cache de Maven
 - Run `mvn verify` (build + tests)
 
 ---
 
-# Useful Commands
+# Commandes utiles
 
-**Start full stack (recommended):**
+**Démarrer la stack complète (recommandé) :**
 
 ```bash
 docker-compose up --build
 ```
 
-**Start only Postgres:**
+**Démarrer uniquement PostgreSQL :**
 
 ```bash
 docker-compose up -d postgres
 ```
 
-**Run app locally:**
+**Lancer l’application en local :**
 
 ```bash
 mvn spring-boot:run
@@ -272,17 +270,15 @@ mvn clean install
 
 ---
 
-# Project Status
-
-Backend operational with:
-
-- CRUD operations  
-- Pagination + sorting  
-- Entity relations  
-- Mapper layer  
-- DTOs  
-- Custom exceptions  
-- Global handler  
-- CI pipeline  
-- Full Docker support  
+# État du projet
+- Backend opérationnel avec :
+- Opérations CRUD
+- Pagination et tri
+- Relations entre entités
+- Couche Mapper
+- DTOs
+- Exceptions personnalisées
+- Gestionnaire global des erreurs
+- Pipeline CI
+- Support Docker complet
 
